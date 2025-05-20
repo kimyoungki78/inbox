@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이먼 회장의 경고에 대한 분석_연합인포맥스 기사에 대한 분석</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            margin: 0;
+            padding: 10px; /* Padding for mobile */
+            background-color: #f8f9fa;
+            color: #333;
+            font-size: 16px; /* Base font size for mobile readability */
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%; /* Prevent font scaling on mobile */
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #2c3e50; /* Dark blue */
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            /* text-align: center; Removed to allow left-align for new p tags */
+        }
+
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+            text-align: center; /* Center the main title */
+        }
+
+        .header p { /* Style for paragraphs in header */
+            margin: 8px 0; /* Adjusted margin */
+            font-size: 0.9em;
+            text-align: left; /* Default left align for details */
+        }
+        .header p strong { /* Strong tag within header p */
+            color: #ffffff; /* White color for strong tags in header, for better contrast */
+            font-weight: bold;
+        }
+        .header a { /* Style for links in header */
+            color: #a7c5e8; /* Light blue for links, good contrast on dark blue */
+            text-decoration: underline;
+        }
+        .header a:hover {
+            color: #ffffff;
+        }
+        .header small { /* Style for potential future small text in header */
+            font-size: 0.85em;
+            opacity: 0.9;
+            display: block;
+            margin-top: 10px;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        /* Accordion Styles */
+        .accordion-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Ensures border-radius clips content */
+            margin-bottom: 20px; /* Space before copyright */
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #e9ecef;
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-title {
+            background-color: #f1f3f5; /* Level 1 Title Background */
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #343a40;
+            transition: background-color 0.3s ease;
+            text-align: left; /* Ensure text aligns left */
+        }
+
+        .accordion-title:hover {
+            background-color: #e9ecef;
+        }
+
+        .accordion-title .icon svg {
+            width: 1em;
+            height: 1em;
+            transition: transform 0.3s ease;
+            fill: #343a40;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-left: 10px; /* Add some space between text and icon */
+        }
+        /* Ensure text takes available space */
+        .accordion-title span:first-child {
+            flex-grow: 1;
+        }
+
+        .accordion-title.active .icon svg {
+            transform: rotate(-180deg);
+        }
+
+        .accordion-content {
+            padding: 0 15px; /* Only horizontal padding when closed */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            background-color: #ffffff;
+            font-size: 0.95em; /* Slightly smaller font for content */
+        }
+
+        .accordion-content.active {
+            padding: 15px 15px; /* Vertical and horizontal padding when open */
+            max-height: 5000px; /* Adjust max-height as needed, generous value */
+            transition: max-height 0.5s ease-in, padding 0.5s ease-in; /* Adjust timing */
+        }
+
+        /* Nested Content Formatting */
+        .accordion-content h4 { /* Subheadings */
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #17a2b8; /* Teal color for subheadings */
+            font-size: 1.1em;
+            font-weight: bold;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 5px;
+        }
+        /* General style for strong tags (red) in accordion content */
+        .accordion-content strong {
+            color: #dc3545; /* Red color */
+            font-weight: bold;
+        }
+
+
+        /* Style for Bear's Opinion */
+        .bears-opinion {
+            background-color: #e6f7ff; /* Light blue background */
+            border-left: 4px solid #007bff; /* Blue border */
+            padding: 10px 15px;
+            margin: 15px 0; /* Margin top and bottom */
+            border-radius: 4px;
+            font-style: italic;
+            color: #0056b3; /* Darker blue text */
+        }
+        .bears-opinion strong { /* Strong inside bear's opinion */
+            color: #003f7f; /* Even darker blue for emphasis */
+            font-weight: bold; /* Already italic from parent, ensure bold */
+        }
+        .bears-opinion-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #0056b3; /* Matches text color, but bold */
+            font-style: normal; /* Override italic for the title itself */
+        }
+
+        .accordion-content p,
+        .accordion-content ul,
+        .accordion-content ol {
+            margin-bottom: 10px;
+        }
+        .accordion-content ul,
+        .accordion-content ol {
+            padding-left: 25px; /* Indent for lists */
+        }
+        .accordion-content li {
+            margin-bottom: 6px; /* Space between list items */
+        }
+        .accordion-content ul ul, .accordion-content ol ol { /* Nested lists */
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Copyright text style */
+        .copyright-text {
+            font-size: 0.8em;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 10px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+                font-size: 17px; /* Slightly larger base font */
+            }
+            .header {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .accordion-title {
+                padding: 15px 20px;
+            }
+            .accordion-content {
+                padding: 0 20px; /* Adjust padding */
+                font-size: 1em; /* Reset content font size */
+            }
+            .accordion-content.active {
+                padding: 15px 20px; /* Adjust padding */
+            }
+            .accordion-content h4 {
+                font-size: 1.15em;
+            }
+            .accordion-content ul,
+            .accordion-content ol {
+                padding-left: 30px; /* Adjust list indent */
+            }
+            .bears-opinion {
+                padding: 12px 20px; /* Adjust padding for larger screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>제이미 다이먼 (JP모건 체이스 최고 경영자) 시장 경고</h1>
+        <p><strong>원본 영상 출처:</strong> <a href="https://youtube.com/shorts/5Ulvr_grWmk?si=Rw9PnxvEIp1c2PXt" target="_blank" title="유튜브 동영상 보기"> 유튜브 동영상 URL </a></p>
+        <p><strong>관련 영상 주요 장면:</strong> (예: 03:15 - 주식 시장 하락 가능성 언급)</p>
+        <p><strong>작성 기관:</strong> 봄날의 곰 경제연구소</p> 
+    </div>
+
+    <div class="accordion-container">
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span>미국 주식 시장 하락 가능성 경고</span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 15.5l-6-6h12z"/></svg>
+                </span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    <li>주식 시장이 <strong>약 10% 하락할 수 있다</strong>고 언급</li>
+                    <li>시장이 <strong>지나치게 안일하다</strong>고 지적</li>
+                    <li>주가 하락 <strong>유발 요인</strong> 제시:
+                        <ul>
+                            <li>기업들의 <strong>수익 전망 하향</strong></li>
+                            <li>투자자들의 <strong>가치 재평가</strong></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="bears-opinion">
+                    <span class="bears-opinion-title">곰의 의견:</span>
+                    <p>1. 수익 전망: 다시 상향 되고 있음, 거의 회복됨. 놀랍지만 그렇게 되었음.</p>
+                    <p>2. 가치 재평가: 진행되다가 다시 비싸게 보고 있음. 잘 이해는 안 되지만, 투기 심리가 다시 강해지면서 또 높은 고평가 상황이 지속되고 있음.</p>
+                    <p>3. 투기 심리 과열: 맞으면서도 틀린데, 아직도 완전 회복은 안 됨. 많이 올라온 것에는 동의함.</p>
+                    <p>4. 10% 하락은, 평균 1.6년마다 발생 가능한 이벤트라서, 언제든 발생 가능하다고 생각함. 큰 위험은 아니라고 봄.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span>신용 시장에 대한 비판 및 평가</span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 15.5l-6-6h12z"/></svg>
+                </span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    <li><strong>이해 부족</strong>을 비판</li>
+                    <li>현재 미국 <strong>자산 가격이 여전히 높다</strong>고 평가</li>
+                    <li><strong>신용은 위험하다</strong>고 평가</li>
+                </ul>
+                <div class="bears-opinion">
+                    <span class="bears-opinion-title">곰의 의견:</span>
+                    <p>1. 자산 가격은 매우 높고, 가산금리가 너무 낮아서 안일하다는 점에 동의함. 하지만 그렇다고 비판하고 물러서기에는 너무 오래 이 상황이 지속되어옴.</p>
+                    <p>2. 미국 자산이 너무 비싼 건 맞지만, 이걸 무너트릴 만큼 충분한 모순이 아직 안 쌓인 것으로 보임.</p>
+                    <p>3. 신용은 위험하다고 하기에는 아직 선행 모순(부도, 가압류, 연체)이 너무 부족함. 서브프라임 초기 수준에 들어갈 정도까지 쌓인 다음에야, 투자자로서는 물러설 듯.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span>미국 관세 정책 언급</span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 15.5l-6-6h12z"/></svg>
+                </span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    <li><strong>인플레이션 상승</strong> 가능성이 예상보다 높다고 진단</li>
+                    <li><strong>스태그플레이션 가능성</strong>이 예상보다 높다고 진단</li>
+                </ul>
+                <div class="bears-opinion">
+                    <span class="bears-opinion-title">곰의 의견:</span>
+                    <p>1. 채권시장의 1년 기대 인플레이션은 2.5% 정도로 안정화됨. 정파성이 많이 작용하는 각종 설문조사는 매우 높음. 어느 쪽을 추종할지는 각자의 판단이라 생각함.</p>
+                    <p>2. 중국에서 미국으로 가는 컨테이너 운임이 전주 대비 10% 상승함. 물건이 미국으로 들어가고 있음. 생각보다 물가 충격이 약해질 수 있음.</p>
+                    <p>3. 스태그플레이션은 고물가, 저성장 또는 역성장 가정인데, 일단 성장률은 많이는 아니어도 2.5% 이상 나올 것으로 보임 (GDP 대비 연방 적자가 6% 이상이라서). 그냥 인플레이션으로 봐야 할 것으로 지금은 보임. 스태그플레이션의 전제인, 불경기 또는 경기후퇴가 오기에는 머스크가 물러나면서 불경기 가능성이 없어진 게 매우 중요함. 미국 안 망할 듯, 적어도 내년까지는 그러함.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span>지정학적 위험</span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 15.5l-6-6h12z"/></svg>
+                </span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    <li>위험도가 <strong>매우 높다</strong>고 강조</li>
+                </ul>
+                <div class="bears-opinion">
+                    <span class="bears-opinion-title">곰의 의견:</span>
+                    <p>1. 미국을 침공할 나라는 아직 안 보이며, 미국의 캐나다 침공 의지도 약해짐. 덴마크 침공 의지도 꺾였음.</p>
+                    <p>2. 우크라이나는 계속 사람이 죽어 나가지만, 핵전쟁은 다들 별로 관심 없음.</p>
+                    <p>3. 중동에서 이스라엘은 트럼프에게 버림받은 듯한 모습을 보이고 있음.</p>
+                    <p>4. 중국은 악을 쓰는 듯 하지만, 곰이 보기에는 자기 별문제 없다고 애처롭게 쇼하는 것으로 보임. 큰 문제는 없으나, 아직은 미국과 싸우기에는 체급이 부족해 보임.</p>
+                    <p>5. 후티와의 전쟁에서 미국이 진 것(자기의 의지 강요에 실패)한 것이 중요한데, 군사력 면에서 미국의 약점이 후티 반군과의 전쟁에서 노출됨. 미국에 무기가 부족하고, 항공모함 전대가 생각보다 드론에 매우 취약함이 드러남. 미국의 향후 전략에서 매우 큰 약점이 노출된 듯함. 이게 오히려 지정학적 위험을 줄여줄 듯 (미국이 막 침공하기 어려워짐).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span>은행의 견고함 전망</span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 15.5l-6-6h12z"/></svg>
+                </span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    <li>이러한 혼란 속에서도 은행은 <strong>견딜 수 있을 것</strong>이라고 덧붙임</li>
+                </ul>
+                <div class="bears-opinion">
+                    <span class="bears-opinion-title">곰의 의견:</span>
+                    <p>1. 가산금리 낮고, 특별하게 은행들이 문제 될 이유가 아직은 안 보임.</p>
+                    <p>2. 부동산 시장도 그냥 그냥 절뚝거리면서 가고 있고.</p>
+                    <p>3. 기업 부채 연장도, 그다지 문제 없음.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span>전반적 평가 (곰의 의견)</span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 15.5l-6-6h12z"/></svg>
+                </span>
+            </div>
+            <div class="accordion-content">
+                <div class="bears-opinion">
+                    <p>원문을 보면 더 좋을 것 같긴 한데요, 큰 문제는 없다고 보며, 다이먼 회장님의 말씀은 아주 평범한 매일 하던 말씀 수준이 아닌가 합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="copyright-text">© 2025 시장 분석 자료. All rights reserved.</p>
+
+    <script>
+        // Function to handle accordion clicks
+        function handleAccordionClick(titleElement, contentElement) {
+            // Toggle active class on title and content
+            titleElement.classList.toggle('active');
+            contentElement.classList.toggle('active');
+
+            // Adjust max-height for animation
+            if (contentElement.classList.contains('active')) {
+                // Set max-height to scrollHeight to open smoothly
+                // Use setTimeout to ensure the element is rendered before calculating scrollHeight
+                setTimeout(() => {
+                    // Check if still active before setting max-height, prevents race conditions
+                    if(titleElement.classList.contains('active')) {
+                        contentElement.style.maxHeight = contentElement.scrollHeight + "px";
+                    }
+                }, 10); // Small delay
+            } else {
+                // Set max-height to 0 to close smoothly
+                contentElement.style.maxHeight = '0';
+            }
+        }
+
+        // Add click listeners to all main accordion titles
+        const mainAccordionTitles = document.querySelectorAll('.accordion-container > .accordion-item > .accordion-title');
+        mainAccordionTitles.forEach(title => {
+            title.addEventListener('click', () => {
+                const content = title.nextElementSibling; // Get the content element
+                const parentContainer = title.closest('.accordion-container'); // Get the container
+
+                // Check if the clicked item is already active before closing others
+                const wasActive = title.classList.contains('active');
+
+                // Close other items within the same container
+                // Only close others if the clicked item wasn't already active (meaning it's being opened)
+                if (!wasActive) {
+                    parentContainer.querySelectorAll('.accordion-item > .accordion-title.active').forEach(otherTitle => {
+                        if (otherTitle !== title) {
+                            handleAccordionClick(otherTitle, otherTitle.nextElementSibling);
+                        }
+                    });
+                }
+
+                // Now, handle the click for the current item (toggle it)
+                handleAccordionClick(title, content);
+            });
+        });
+    </script>
+
+</body>
+</html>
